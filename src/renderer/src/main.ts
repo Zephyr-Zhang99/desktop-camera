@@ -1,6 +1,10 @@
-import './assets/main.css'
-
+import '@renderer/assets/css/tailwind.css'
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
 import { createApp } from 'vue'
 import App from './App.vue'
+import './assets/main.css'
+const app = createApp(App)
 
-createApp(App).mount('#app')
+app.use(ElementPlus)
+app.mount('#app')
