@@ -24,7 +24,9 @@
     "@electron-toolkit/preload": "^3.0.1",
     "@electron-toolkit/utils": "^3.0.0",
     "electron-updater": "^6.1.8",
-    "element-plus": "^2.7.1"
+    "element-plus": "^2.7.1",
+    "sass": "^1.75.0",
+    "scss": "^0.2.4"
   },
   "devDependencies": {
     "@electron-toolkit/eslint-config": "^1.0.2",

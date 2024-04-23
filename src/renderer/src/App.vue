@@ -1,10 +1,11 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  import Camera from './components/Camera.vue';
+</script>
 
 <template>
-  <main class="">
-    <el-button type="primary">123</el-button>
-    <div class="bg-red-600">123123123</div>
-  </main>
+  <Suspense>
+    <Camera></Camera>
+  </Suspense>
 </template>
 
 <style></style>

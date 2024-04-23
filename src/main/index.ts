@@ -7,10 +7,14 @@ function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 300,
+    minWidth: 250,
+    maxWidth: 500,
     height: 300,
+    maxHeight: 500,
     x: 100,
-    y: 650,
+    y: 550,
     show: false,
+    frame: false,
     autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
@@ -18,7 +22,8 @@ function createWindow(): void {
       sandbox: false
     }
   })
-
+  mainWindow.setAspectRatio(1)
+  mainWindow.webContents.openDevTools()
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
   })
