@@ -4,11 +4,14 @@
   import Setting from './components/Setting.vue';
   import { useConfigStore } from './store/useConfigStore';
   const { config } = useConfigStore()
+  const quit = () => {
+    window.api.quit()
+  }
 </script>
 
 <template>
   <Suspense>
-    <main class="relative group">
+    <main class="relative group" @contextmenu="quit">
       <section>
         <!-- 参数设置 -->
         <setting-one theme="outline" size="24"
