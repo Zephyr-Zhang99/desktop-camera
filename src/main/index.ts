@@ -12,9 +12,11 @@ function createWindow(): void {
     height: 300,
     maxHeight: 500,
     x: 100,
-    y: 550,
+    y: 750,
+    transparent: true, // 透明窗口
     show: false,
     frame: false,
+    alwaysOnTop: true,
     autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {

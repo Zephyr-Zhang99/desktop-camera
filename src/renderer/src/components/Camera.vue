@@ -1,16 +1,14 @@
 <script setup lang="ts">
-
+    import { useConfigStore } from '@renderer/store/useConfigStore';
     import { onMounted } from 'vue';
-    const devices = await navigator.mediaDevices.enumerateDevices();
-    const cameras = devices.filter(d => d.kind.includes('video'))
-    console.log(cameras);
+    const { config } = useConfigStore()
 
     onMounted(() => {
         const video = document.querySelector("video")!;
         const constraints = {
             audio: false,
             video: {
-                deviceId: cameras[1].deviceId
+                deviceId: config.deviceId, width: 1920, height: 1080
             },
         } as MediaStreamConstraints;
         navigator.mediaDevices
@@ -24,8 +22,9 @@
 
 </script>
 <template>
-    <main class="w-screen h-screen flex">
-        <video class="object-cover"></video>
+    <main class="w-screen h-screen flex" :class="{ 'rounded-full': config.rounded }"
+        :style="`border:solid ${config.borderWidth} ${config.borderColor}`">
+        <video class="object-cover h-full" :class="{ 'rounded-full': config.rounded }"></video>
     </main>
 </template>
 
