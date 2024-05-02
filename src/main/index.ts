@@ -2,22 +2,26 @@ import { electronApp, is, optimizer } from '@electron-toolkit/utils'
 import { BrowserWindow, app, ipcMain, shell } from 'electron'
 import { join } from 'path'
 import icon from '../../resources/icon.png?asset'
+import './drag'
 import './ipcMain'
-
+import createTray from './tray'
+import './windowSize'
 function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 300,
-    minWidth: 250,
-    maxWidth: 500,
-    height: 300,
-    maxHeight: 500,
-    x: 100,
-    y: 750,
+    width: 500,
+    height: 280,
+    // minWidth: 280,
+    // maxWidth: 500,
+    // minHeight: 280,
+    // maxHeight: 500,
+    x: 1300,
+    y: 100,
     transparent: true, // 透明窗口
     show: false,
     frame: false,
     alwaysOnTop: true,
+    skipTaskbar: false,
     autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
@@ -25,8 +29,8 @@ function createWindow(): void {
       sandbox: false
     }
   })
-  mainWindow.setAspectRatio(1)
-  mainWindow.webContents.openDevTools()
+  // drag(mainWindow)
+  if (is.dev) mainWindow.webContents.openDevTools()
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
   })
@@ -63,12 +67,16 @@ app.whenReady().then(() => {
   ipcMain.on('ping', () => console.log('pong'))
 
   createWindow()
+  // 托盘图标
+  createTray()
 
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
     if (BrowserWindow.getAllWindows().length === 0) createWindow()
   })
+  // 隐藏dock图标
+  app.dock.hide()
 })
 
 // Quit when all windows are closed, except on macOS. There, it's common

@@ -1,10 +1,16 @@
-import { electronAPI } from '@electron-toolkit/preload'
-import { contextBridge, ipcRenderer } from 'electron'
+import { electronAPI } from '@electron-toolkit/preload';
+import { contextBridge, ipcRenderer } from 'electron';
 
 // Custom APIs for renderer
 const api = {
   quit: () => {
     ipcRenderer.send('quit')
+  },
+  drag: (opt: { x: number, y: number }) => {
+    ipcRenderer.invoke('drag', opt)
+  },
+  setWindowSize: (opt: any) => {
+    ipcRenderer.send('setWindowSize', opt)
   }
 }
 

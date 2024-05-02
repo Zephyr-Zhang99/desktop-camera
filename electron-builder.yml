@@ -1,7 +1,7 @@
-appId: com.electron.app
+appId: desktop-camera
 productName: desktop-camera
 directories:
-  buildResources: build
+  buildResources: build,
 files:
   - '!**/.vscode/*'
   - '!src/*'

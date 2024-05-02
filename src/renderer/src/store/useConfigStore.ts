@@ -7,7 +7,7 @@ export const useConfigStore = defineStore(
     const config = ref({
       page: 'camera', // 页面
       deviceId: '', // 设备id
-      borderWidth: '5px',
+      borderWidth: '',
       borderColor: '#c04851',
       rounded: false // 是否圆角
     })
